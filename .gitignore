@@ -1,0 +1,2 @@
+node_modules
+# -> in this .gitignore file  we add those files which we have  not to visible to others on git
