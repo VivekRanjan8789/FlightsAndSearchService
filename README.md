@@ -14,10 +14,11 @@
     "password": <YOUR_DB_LOGIN_PASSWORD>,
     "database": "Flights_Search_DB_DEV",
     "host": "127.0.0.1",
-    "dialect": "mysql" 
+    "dialect": "mysql"
       }
    }
 
 ```
-
-`once you've added your db config as listed above, go to your source folder from your terminal and execute 'npx sequelize db:create'`
+- once you have added your db config as listed above, go to the src folder from your terminal and execute `npx sequelize db:create`
+```
+```
