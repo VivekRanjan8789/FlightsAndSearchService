@@ -7,8 +7,8 @@ class CityService{
 
     async createCity(data){
           try {
-             const City = this.CityRepository.createCity(data);
-             return City;
+             const city = this.CityRepository.createCity(data);
+             return city;
           } catch (error) {
             console.log("something went wrong at servive layer");
             throw(error);
@@ -27,7 +27,7 @@ class CityService{
 
     async updateCity(cityId,data){
         try {
-            const city = await this.CityRepository.createCity(cityId,data);
+            const city = await this.CityRepository.updateCity(cityId,data);
             return city;
         } catch (error) {
           console.log("something went wrong at servive layer");
@@ -38,6 +38,7 @@ class CityService{
     async getCity(cityId){
         try {
             const city = await this.CityRepository.getCity(cityId);
+            return city;
         } catch (error) {
           console.log("something went wrong at servive layer");
           throw(error);

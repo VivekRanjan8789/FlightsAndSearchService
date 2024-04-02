@@ -3,10 +3,10 @@ const { City } = require('../models/index');
 class CityRepository{
      async createCity({ name }){
         try {
-           await City.create({
+           const city = await City.create({
             name
            });
-           return City;
+           return city;
         } catch (error) {
             console.log("something went wrong in the repository layer");
             throw(error);
@@ -15,7 +15,7 @@ class CityRepository{
 
      async deleteCity(cityId){
         try {
-           await City.destroy({
+           const city = await City.destroy({
             where: {
                 id: cityId
             }
@@ -28,24 +28,30 @@ class CityRepository{
 
      }
 
-     async updateCity(cityid, data){
+     async updateCity(cityId, data){
         try {
-            await City.update(data, {
-                where: {
-                    id: cityid
-                }
-            });
-            return  City;
+            // The below approach also works but will not return updated object
+            // If we are using pg then returning: true can be used, else not
+            // const city = await City.update(data, {
+            //     where: {
+            //         id: cityId
+            //     }
+            // });
+            // for getting updated data in mysql we use the below approach
+            const city = await City.findByPk(cityId);
+            city.name = data.name;
+            await city.save();
+            return  city;
         } catch (error) {
             console.log("something went wrong in the repository layer");
             throw(error);
         }
      }
      
-     async getCity(cityid){
+     async getCity(cityId){
         try {
-            const city = await City.findByPk(cityid);
-            return City;
+            const city = await City.findByPk(cityId);
+            return city;
         } catch (error) {
             console.log("something went wrong in the repository layer");
             throw(error);

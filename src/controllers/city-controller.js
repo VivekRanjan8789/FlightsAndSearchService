@@ -14,7 +14,7 @@ const create = async (req, res) =>{
             success: true,
             message: "successfully created a city",
             err: {}
-         })
+         });
     } catch (error) {
         console.log(error);
         return res.status(500).json({
@@ -29,9 +29,9 @@ const create = async (req, res) =>{
 //DELETE -> /city/:id
 const destroy = async (req, res) => {
     try{
-        const city = await  cityService.deleteCity(req.params.id);
+        const response = await  cityService.deleteCity(req.params.id);
          return res.status(200).json({
-            data: city,
+            data: response,
             success: true,
             message: "successfully deleted a city",
             err: {}
@@ -51,9 +51,9 @@ const destroy = async (req, res) => {
 // GET -> /city/:id
 const get = async (req, res) =>{
     try{
-        const city = await  cityService.deleteCity(req.params.id);
+        const response = await  cityService.getCity(req.params.id);
          return res.status(200).json({
-            data: city,
+            data: response,
             success: true,
             message: "successfully fetched a city",
             err: {}
@@ -73,9 +73,9 @@ const get = async (req, res) =>{
 //PATCH -> /city/:id -> re.body
 const update = async (req, res) =>{
     try{
-        const city = await  cityService.patch(req.params.id, req.body);
+        const response = await cityService.updateCity(req.params.id, req.body);
          return res.status(200).json({
-            data: city,
+            data: response,
             success: true,
             message: "successfully updated a city",
             err: {}
